@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="docs_static/css/docs.css">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="docs_static/js/main.js"></script>
+    <title>Zhabbler API documentation</title>
+</head>
+<body>
+    <nav class="navbar_top">
+        <div class="navbar_top_container">
+            <div>
+                <a href="https://zhabbler.ru/dashboard" class="navbar_top_logotype">ж</a>
+            </div>
+            <form method="get" action="https://zhabbler.ru/search" data-reload="3" class="nav_options_searchbar">
+                <input type="text" name="q" autocomplete="off" value="" placeholder="Поиск в Жабблере">
+            </form>
+            <div class="navbar_top_container_elements_icons">
+                <a class="button" href="https://zhabbler.ru/login">
+                    Войти
+                </a>
+                <a class="button button_blue" style="margin-left: 10px;" href="https://zhabbler.ru/register">
+                    Создать аккаунт
+                </a>
+            </div>
+        </div>
+    </nav>
+    <main class="main_content">
+        <div>
+            <div class="alert">
+                <div>
+                    <svg data-slot="icon" aria-hidden="true" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div>
+                    API сделан не до конца. Здесь присутсвуют не все функции которые имеются в веб-версии Жабблера.
+                </div>
+            </div>
+        </div>
+        <div>
+            <h1>Жабблер API</h1>
+            <p>
+                Нет ничего приятнее, чем видеть, как талантливые дизайнеры и инженеры используют Жабблер для создания совершенно новых форм творческого самовыражения.
+                Мы приложили огромные усилия, чтобы сделать этот API достаточно функциональным и гибким для любых проектов, в которых вы будете его использовать.
+            </p>
+            <p>
+                Чтобы вызвать функцию, вам необходимо перейти на страницу <code>{your_domain}/developer/api</code> и ввести название функции, к примеру, функцию которая показывает все посты: <code>{your_domain}/developer/api/Posts/get_all_posts?last_id=0</code>
+            </p>
+            <p>
+                Практически все функции требуют специальный айди сессии (<a href="#create_session-func">Как авторизовать пользователя и получить айди сессии?</a>).
+            </p>
+        </div>
+        <div>
+            <h2>
+                Содержание
+            </h2>
+            <ul>
+                <li>
+                    <a href="#sessions-obj">
+                        Sessions
+                    </a>
+                </li>
+                <ul>
+                    <li>
+                        <a href="#create_session-func">create_session</a>
+                    </li>
+                    <li>
+                        <a href="#remove_session-func">remove_session</a>
+                    </li>
+                    <li>
+                        <a href="#get_user_by_session-func">get_user_by_session</a>
+                    </li>
+                </ul>
+                <li>
+                    <a href="#user-obj">
+                        User
+                    </a>
+                </li>
+                <ul>
+                    <li>
+                        <a href="#get_user_by_token-func">get_user_by_token</a>
+                    </li>
+                    <li>
+                        <a href="#get_user_by_nickname-func">get_user_by_nickname</a>
+                    </li>
+                </ul>
+                <li>
+                    <a href="#posts-obj">
+                        Posts
+                    </a>
+                </li>
+                <ul>
+                    <li>
+                        <a href="#add-func">add</a>
+                    </li>
+                    <li>
+                        <a href="#get_all_posts-func">get_all_posts</a>
+                    </li>
+                    <li>
+                        <a href="#get_post-func">get_post</a>
+                    </li>
+                    <li>
+                        <a href="#get_comments-func">get_comments</a>
+                    </li>
+                    <li>
+                        <a href="#comment-func">comment</a>
+                    </li>
+                    <li>
+                        <a href="#check_post_settings-func">check_post_settings</a>
+                    </li>
+                    <li>
+                        <a href="#check_post_existence-func">check_post_existence</a>
+                    </li>
+                </ul>
+            </ul>
+        </div>
+        <div id="sessions-obj">
+            <h2>
+                Sessions
+            </h2>
+            <div id="create_session-func">
+                <h3>
+                    create_session
+                </h3>
+                <p>
+                    Параметры: <code>email</code>, <code>password</code>
+                </p>
+                <p>
+                    Создаёт айди сессии и возвращает его.
+                </p>
+                <pre class="prettyprint">
+{
+    "session": "{session}"
+}</pre>
+            </div>
+            <div id="remove_session-func" style="margin-bottom: 15px;">
+                <h3>
+                    remove_session
+                </h3>
+                <p>
+                    Параметры: <code>session</code>, <code>token</code>
+                </p>
+                <p>
+                    Удаляет сессию (к примеру, это нужно для выхода из аккаунта).
+                </p>
+            </div>
+            <div id="get_user_by_session-func">
+                <h3>
+                    get_user_by_session
+                </h3>
+                <p>
+                    Параметры: <code>session</code>
+                </p>
+                <p>
+                    Возвращает данные аккаунта и профиля используя специальный айди сессии.
+                </p>
+                <pre class="prettyprint">
+{
+    "id": 1,
+    "nickname": "admin",
+    "name": "Administrator",
+    "biography": "",
+    "profileImage": "{url}",
+    "profileCover": "",
+    "email": "admin@localhost.lh",
+    "token": "{token}"
+}</pre>
+            </div>
+        </div>
+        <div id="user-obj">
+            <h2>
+                User
+            </h2>
+            <div id="get_user_by_token-func">
+                <h3>
+                    get_user_by_token
+                </h3>
+                <p>
+                    Параметры: <code>token</code>
+                </p>
+                <p>
+                    Возвращает данные аккаунта и профиля используя токен.
+                </p>
+                <pre class="prettyprint">
+{
+    "id": 1,
+    "nickname": "admin",
+    "name": "Administrator",
+    "biography": "",
+    "profileImage": "{url}",
+    "profileCover": "",
+    "email": "admin@localhost.lh",
+    "token": "{token}"
+}</pre>
+            </div>
+            <div id="get_user_by_nickname-func">
+                <h3>
+                    get_user_by_nickname
+                </h3>
+                <p>
+                    Параметры: <code>nickname</code>
+                </p>
+                <p>
+                    Возвращает данные профиля используя никнейм.
+                </p>
+                <pre class="prettyprint">
+{
+    "id": 1,
+    "nickname": "admin",
+    "name": "Administrator",
+    "biography": "",
+    "profileImage": "{url}",
+    "profileCover": ""
+}</pre>
+            </div>
+        </div>
+        <div id="posts-obj">
+            <h2>
+                Posts
+            </h2>
+            <div id="add-func" style="margin-bottom: 15px;">
+                <h3>
+                    add
+                </h3>
+                <p>
+                    Параметры: <code><b>session</b></code>, <code><b>post</b></code>, <code>urlid</code>, <code>contains</code> (1 = пост имеет спойлеры), <code>who_comment</code> (1 = никто), <code>who_repost</code> (1 = никто), <code>repost</code> (айди поста для репоста), <code>question</code> (айди вопроса для ответа), <code>tags</code>
+                </p>
+                <p>
+                    Добавляет пост.
+                </p>
+            </div>
+            <div id="get_all_posts-func">
+                <h3>
+                    get_all_posts
+                </h3>
+                <p>
+                    Параметры: <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
+                </p>
+                <p>
+                    Возвращает список всех постов.
+                </p>
+                <pre class="prettyprint">
+[
+    {
+        "id": 1,
+        "userID": 1,
+        "nickname": "admin",
+        "profileImage": "{url}",
+        "postContent": "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
+        "liked": 0,
+        "uploaded": "2024-08-11 00:00:00"
+    }
+]</pre>
+            </div>
+            <div id="get_post-func">
+                <h3>
+                    get_post
+                </h3>
+                <p>
+                    Параметры: <code>post_id</code>
+                </p>
+                <p>
+                    Возвращает данные поста используя айди поста.
+                </p>
+                <pre class="prettyprint">
+{
+    "id": 1,
+    "userID": 1,
+    "nickname": "admin",
+    "profileImage": "{url}",
+    "postContent": "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
+    "liked": 0,
+    "uploaded": "2024-08-11 00:00:00"
+}
+</pre>
+            </div>
+            <div id="get_comments-func">
+                <h3>
+                    get_comments
+                </h3>
+                <p>
+                    Параметры: <code>id</code>, <code>session</code>
+                </p>
+                <p>
+                    Возвращает список всех комментариев под постом.
+                </p>
+                <pre class="prettyprint">
+[
+    {
+        "id": 1,
+        "profileImage": "{url}",
+        "nickname": "admin",
+        "comment": "Hello!",
+        "post_id": "{post_id}",
+        "added": "2024-08-11 08:43:32"
+    }
+]</pre>
+            </div>
+            <div id="comment-func" style="margin-bottom: 15px;">
+                <h3>
+                    comment
+                </h3>
+                <p>
+                    Параметры: <code>session</code>, <code>post_id</code>, <code>comment</code>
+                </p>
+                <p>
+                    Добавляет комментарий под постом.
+                </p>
+            </div>
+            <div id="check_post_settings-func"style="margin-bottom: 15px;">
+                <h3>
+                    check_post_settings
+                </h3>
+                <p>
+                    Параметры: <code>for</code> (должен быть равен <code>comments</code> или <code>reposts</code>), <code>post_id</code>
+                </p>
+                <p>
+                    Используется для того, чтобы узнать какие настройки поста были применены для комментариев или репостов.<br>Возвращает <code>false</code> если действие запрещено.
+                </p>
+            </div>
+            <div id="check_post_existence-func">
+                <h3>
+                    check_post_existence
+                </h3>
+                <p>
+                    Параметры: <code>post_id</code>
+                </p>
+                <p>
+                    Возвращает <code>true</code> если пост существует.
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
