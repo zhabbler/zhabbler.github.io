@@ -98,6 +98,9 @@
                     <li>
                         <a href="#get_all_posts-func">get_all_posts</a>
                     </li>
+                     <li>
+                        <a href="#get_posts_by_user-func">get_posts_by_user</a>
+                    </li>
                     <li>
                         <a href="#get_post-func">get_post</a>
                     </li>
@@ -240,6 +243,30 @@
                 </p>
                 <p>
                     Возвращает список всех постов.
+                </p>
+                <pre class="prettyprint">
+[
+    {
+        "id": 1,
+        "post_id": "{id}",
+        "userID": 1,
+        "nickname": "admin",
+        "profileImage": "{url}",
+        "postContent": "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
+        "liked": 0,
+        "uploaded": "2024-08-11 00:00:00"
+    }
+]</pre>
+            </div>
+            <div id="get_posts_by_user">
+                <h3>
+                    get_posts_by_user
+                </h3>
+                <p>
+                    Параметры: <code>nickname</code>, <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
+                </p>
+                <p>
+                    Возвращает список всех постов от пользователя.
                 </p>
                 <pre class="prettyprint">
 [
