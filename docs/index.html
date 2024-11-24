@@ -83,6 +83,9 @@
                         <a href="#get_user_by_token-func">get_user_by_token</a>
                     </li>
                     <li>
+                        <a href="#get_user_by_id-func">get_user_by_id</a>
+                    </li>
+                    <li>
                         <a href="#get_user_by_nickname-func">get_user_by_nickname</a>
                     </li>
                 </ul>
@@ -100,6 +103,12 @@
                     </li>
                      <li>
                         <a href="#get_posts_by_user-func">get_posts_by_user</a>
+                    </li>
+                    <li>
+                        <a href="#get_posts_by_user-func">get_posts_by_user</a>
+                    </li>
+                    <li>
+                        <a href="#get_posts_by_user_tags-func">get_posts_by_user_tags</a>
                     </li>
                     <li>
                         <a href="#get_post-func">get_post</a>
@@ -167,7 +176,6 @@
     "biography": "",
     "profileImage": "{url}",
     "profileCover": "",
-    "email": "admin@localhost.lh",
     "token": "{token}"
 }</pre>
             </div>
@@ -194,8 +202,27 @@
     "biography": "",
     "profileImage": "{url}",
     "profileCover": "",
-    "email": "admin@localhost.lh",
     "token": "{token}"
+}</pre>
+            </div>
+            <div id="get_user_by_id-func">
+                <h3>
+                    get_user_by_id
+                </h3>
+                <p>
+                    Параметры: <code>id</code>
+                </p>
+                <p>
+                    Возвращает данные аккаунта и профиля используя айди профиля.
+                </p>
+                <pre class="prettyprint">
+{
+    "id": 1,
+    "nickname": "admin",
+    "name": "Administrator",
+    "biography": "",
+    "profileImage": "{url}",
+    "profileCover": ""
 }</pre>
             </div>
             <div id="get_user_by_nickname-func">
@@ -239,7 +266,7 @@
                     get_all_posts
                 </h3>
                 <p>
-                    Параметры: <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
+                    Параметры: <code>session</code>, <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
                 </p>
                 <p>
                     Возвращает список всех постов.
@@ -247,6 +274,35 @@
                 <pre class="prettyprint">
 [
     {
+<<<<<<< HEAD
+        post_real_id: 1,
+        post_id: "EGu74wjD1PDH",
+        user: {
+            id: 1,
+            nickname: "admin",
+            name: "Administrator",
+            biography: "",
+            profileImage: "{url}",
+            profileCover: ""
+        },
+        content: "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
+        tags: [
+            "hello",
+            "world",
+            "helloworld"
+        ],
+        liked: 0,
+        uploaded: "2024-11-24 00:00:00",
+        post_settings: {
+            all_repost: true,
+            all_comment: true
+        },
+        user_liked: false
+    }
+]</pre>
+            </div>
+            <div id="get_posts_by_user-func">
+=======
         "id": 1,
         "post_id": "{id}",
         "userID": 1,
@@ -259,18 +315,90 @@
 ]</pre>
             </div>
             <div id="get_posts_by_user">
+>>>>>>> cc526953be52ceb8c93b512b02af4281b1e4a66a
                 <h3>
                     get_posts_by_user
                 </h3>
                 <p>
+<<<<<<< HEAD
+                    Параметры: <code>session</code>, <code>nickname</code>, <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
+                </p>
+                <p>
+                    Возвращает список всех постов от определённого пользователя.
+=======
                     Параметры: <code>nickname</code>, <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
                 </p>
                 <p>
                     Возвращает список всех постов от пользователя.
+>>>>>>> cc526953be52ceb8c93b512b02af4281b1e4a66a
                 </p>
                 <pre class="prettyprint">
 [
     {
+<<<<<<< HEAD
+        post_real_id: 1,
+        post_id: "EGu74wjD1PDH",
+        user: {
+            id: 1,
+            nickname: "admin",
+            name: "Administrator",
+            biography: "",
+            profileImage: "{url}",
+            profileCover: ""
+        },
+        content: "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
+        tags: [
+            "hello",
+            "world",
+            "helloworld"
+        ],
+        liked: 0,
+        uploaded: "2024-11-24 00:00:00",
+        post_settings: {
+            all_repost: true,
+            all_comment: true
+        },
+        user_liked: false
+    }
+]</pre>
+            </div>
+            <div id="get_posts_by_user_tags-func">
+                <h3>
+                    get_posts_by_user_tags
+                </h3>
+                <p>
+                    Параметры: <code>session</code>, <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
+                </p>
+                <p>
+                    Возвращает список всех постов, имеющие теги на которых он подписан.
+                </p>
+                <pre class="prettyprint">
+[
+    {
+        post_real_id: 1,
+        post_id: "EGu74wjD1PDH",
+        user: {
+            id: 1,
+            nickname: "admin",
+            name: "Administrator",
+            biography: "",
+            profileImage: "{url}",
+            profileCover: ""
+        },
+        content: "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
+        tags: [
+            "hello",
+            "world",
+            "helloworld"
+        ],
+        liked: 0,
+        uploaded: "2024-11-24 00:00:00",
+        post_settings: {
+            all_repost: true,
+            all_comment: true
+        },
+        user_liked: false
+=======
         "id": 1,
         "post_id": "{id}",
         "userID": 1,
@@ -279,6 +407,7 @@
         "postContent": "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
         "liked": 0,
         "uploaded": "2024-08-11 00:00:00"
+>>>>>>> cc526953be52ceb8c93b512b02af4281b1e4a66a
     }
 ]</pre>
             </div>
@@ -287,13 +416,38 @@
                     get_post
                 </h3>
                 <p>
-                    Параметры: <code>post_id</code>
+                    Параметры: <code>session</code>, <code>post_id</code>
                 </p>
                 <p>
                     Возвращает данные поста используя айди поста.
                 </p>
                 <pre class="prettyprint">
 {
+<<<<<<< HEAD
+    post_real_id: 1,
+    post_id: "EGu74wjD1PDH",
+    user: {
+        id: 1,
+        nickname: "admin",
+        name: "Administrator",
+        biography: "",
+        profileImage: "{url}",
+        profileCover: ""
+    },
+    content: "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
+    tags: [
+        "hello",
+        "world",
+        "helloworld"
+    ],
+    liked: 0,
+    uploaded: "2024-11-24 00:00:00",
+    post_settings: {
+        all_repost: true,
+        all_comment: true
+    },
+    user_liked: false
+=======
     "id": 1,
     "post_id": "{id}",
     "userID": 1,
@@ -302,6 +456,7 @@
     "postContent": "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
     "liked": 0,
     "uploaded": "2024-08-11 00:00:00"
+>>>>>>> cc526953be52ceb8c93b512b02af4281b1e4a66a
 }
 </pre>
             </div>
@@ -318,12 +473,18 @@
                 <pre class="prettyprint">
 [
     {
-        "id": 1,
-        "profileImage": "{url}",
-        "nickname": "admin",
-        "comment": "Hello!",
-        "post_id": "{post_id}",
-        "added": "2024-08-11 08:43:32"
+        "id": 284,
+        "user": {
+            id: 1,
+            nickname: "admin",
+            name: "Administrator",
+            biography: "",
+            profileImage: "{url}",
+            profileCover: ""
+        },
+        "comment": "Hello, world!",
+        "post_id": "EGu74wjD1PDH",
+        "added": "2024-11-24 00:00:00"
     }
 ]</pre>
             </div>
@@ -336,17 +497,6 @@
                 </p>
                 <p>
                     Добавляет комментарий под постом.
-                </p>
-            </div>
-            <div id="check_post_settings-func"style="margin-bottom: 15px;">
-                <h3>
-                    check_post_settings
-                </h3>
-                <p>
-                    Параметры: <code>for</code> (должен быть равен <code>comments</code> или <code>reposts</code>), <code>post_id</code>
-                </p>
-                <p>
-                    Используется для того, чтобы узнать какие настройки поста были применены для комментариев или репостов.<br>Возвращает <code>false</code> если действие запрещено.
                 </p>
             </div>
             <div id="check_post_existence-func">
