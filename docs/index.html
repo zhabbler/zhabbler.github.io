@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="docs_static/css/docs.css">
     <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="docs_static/js/main.js"></script>
     <title>Zhabbler API documentation</title>
 </head>
@@ -11,16 +12,16 @@
     <nav class="navbar_top">
         <div class="navbar_top_container">
             <div>
-                <a href="https://zhabbler.ru/dashboard" class="navbar_top_logotype">ж</a>
+                <a href="https://zhbblr.com/dashboard" class="navbar_top_logotype">ж</a>
             </div>
-            <form method="get" action="https://zhabbler.ru/search" data-reload="3" class="nav_options_searchbar">
+            <form method="get" action="https://zhbblr.com/search" data-reload="3" class="nav_options_searchbar">
                 <input type="text" name="q" autocomplete="off" value="" placeholder="Поиск в Жабблере">
             </form>
             <div class="navbar_top_container_elements_icons">
-                <a class="button" href="https://zhabbler.ru/login">
+                <a class="button" href="https://zhbblr.com/login">
                     Войти
                 </a>
-                <a class="button button_blue" style="margin-left: 10px;" href="https://zhabbler.ru/register">
+                <a class="button button_blue" style="margin-left: 10px;" href="https://zhbblr.com/register">
                     Создать аккаунт
                 </a>
             </div>
@@ -35,7 +36,7 @@
                     </svg>
                 </div>
                 <div>
-                    API сделан не до конца. Здесь присутсвуют не все функции которые имеются в веб-версии Жабблера.
+                    API сообщений пока-что не сделан.
                 </div>
             </div>
         </div>
@@ -46,87 +47,17 @@
                 Мы приложили огромные усилия, чтобы сделать этот API достаточно функциональным и гибким для любых проектов, в которых вы будете его использовать.
             </p>
             <p>
-                Чтобы вызвать функцию, вам необходимо перейти на страницу <code>{your_domain}/developer/api</code> и ввести название функции, к примеру, функцию которая показывает все посты: <code>{your_domain}/developer/api/Posts/get_all_posts?last_id=0</code>
+                Чтобы вызвать функцию, вам необходимо перейти на страницу <code>{your_domain}/developer/api</code> и ввести название функции, к примеру, функцию которая показывает все посты: <code>{your_domain}/developer/api/Posts/get_all_posts?session={session}&last_id=0</code>
             </p>
             <p>
                 Практически все функции требуют специальный айди сессии (<a href="#create_session-func">Как авторизовать пользователя и получить айди сессии?</a>).
             </p>
         </div>
         <div>
-            <h2>
+            <h2 class="JS_IGn">
                 Содержание
             </h2>
-            <ul>
-                <li>
-                    <a href="#sessions-obj">
-                        Sessions
-                    </a>
-                </li>
-                <ul>
-                    <li>
-                        <a href="#create_session-func">create_session</a>
-                    </li>
-                    <li>
-                        <a href="#remove_session-func">remove_session</a>
-                    </li>
-                    <li>
-                        <a href="#get_user_by_session-func">get_user_by_session</a>
-                    </li>
-                </ul>
-                <li>
-                    <a href="#user-obj">
-                        User
-                    </a>
-                </li>
-                <ul>
-                    <li>
-                        <a href="#get_user_by_token-func">get_user_by_token</a>
-                    </li>
-                    <li>
-                        <a href="#get_user_by_id-func">get_user_by_id</a>
-                    </li>
-                    <li>
-                        <a href="#get_user_by_nickname-func">get_user_by_nickname</a>
-                    </li>
-                </ul>
-                <li>
-                    <a href="#posts-obj">
-                        Posts
-                    </a>
-                </li>
-                <ul>
-                    <li>
-                        <a href="#add-func">add</a>
-                    </li>
-                    <li>
-                        <a href="#get_all_posts-func">get_all_posts</a>
-                    </li>
-                     <li>
-                        <a href="#get_posts_by_user-func">get_posts_by_user</a>
-                    </li>
-                    <li>
-                        <a href="#get_posts_by_user-func">get_posts_by_user</a>
-                    </li>
-                    <li>
-                        <a href="#get_posts_by_user_tags-func">get_posts_by_user_tags</a>
-                    </li>
-                    <li>
-                        <a href="#get_post-func">get_post</a>
-                    </li>
-                    <li>
-                        <a href="#get_comments-func">get_comments</a>
-                    </li>
-                    <li>
-                        <a href="#comment-func">comment</a>
-                    </li>
-                    <li>
-                        <a href="#check_post_settings-func">check_post_settings</a>
-                    </li>
-                    <li>
-                        <a href="#check_post_existence-func">check_post_existence</a>
-                    </li>
-                </ul>
-            </ul>
+            <ul id="contain"></ul>
         </div>
         <div id="sessions-obj">
             <h2>
@@ -176,6 +107,12 @@
     "biography": "",
     "profileImage": "{url}",
     "profileCover": "",
+    "followers_count": 0,
+    "personalization_config": {
+        "background": "#ffffff",
+        "accent": "#000000"
+    },
+    "verifed": true,
     "token": "{token}"
 }</pre>
             </div>
@@ -202,6 +139,12 @@
     "biography": "",
     "profileImage": "{url}",
     "profileCover": "",
+    "followers_count": 0,
+    "personalization_config": {
+        "background": "#ffffff",
+        "accent": "#000000"
+    },
+    "verifed": true,
     "token": "{token}"
 }</pre>
             </div>
@@ -222,7 +165,13 @@
     "name": "Administrator",
     "biography": "",
     "profileImage": "{url}",
-    "profileCover": ""
+    "profileCover": "",
+    "followers_count": 0,
+    "personalization_config": {
+        "background": "#ffffff",
+        "accent": "#000000"
+    },
+    "verifed": true
 }</pre>
             </div>
             <div id="get_user_by_nickname-func">
@@ -242,7 +191,28 @@
     "name": "Administrator",
     "biography": "",
     "profileImage": "{url}",
-    "profileCover": ""
+    "profileCover": "",
+    "followers_count": 0,
+    "personalization_config": {
+        "background": "#ffffff",
+        "accent": "#000000"
+    },
+    "verifed": true
+}</pre>
+            </div>
+            <div id="get_user_by_nickname-func">
+                <h3>
+                    check_likes_hidden
+                </h3>
+                <p>
+                    Параметры: <code>nickname</code>
+                </p>
+                <p>
+                    Если у пользователя скрыты посты которые ему нравятся то возвращается <code>true</code>
+                </p>
+                <pre class="prettyprint">
+{
+    "result": false
 }</pre>
             </div>
         </div>
@@ -250,6 +220,16 @@
             <h2>
                 Posts
             </h2>
+            <div class="alert">
+                <div>
+                    <svg data-slot="icon" aria-hidden="true" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </div>
+                <div>
+                    Если необходимо задать теги, то их нужно перечислять через запятую. Пример - <code>api,zhabbler,test</code>
+                </div>
+            </div>
             <div id="add-func" style="margin-bottom: 15px;">
                 <h3>
                     add
@@ -261,6 +241,50 @@
                     Добавляет пост.
                 </p>
             </div>
+            <div>
+                <hr>
+                <h3 class="JS_IGn">
+                    Список постов возвращается в таком виде
+                </h3>
+                <pre class="prettyprint">
+[
+    {
+        "post_real_id": 7,
+        "post_id": "fcekMwaGBePt",
+        "user": {
+            "id": 1,
+            "nickname": "admin",
+            "name": "Administrator",
+            "biography": "",
+            "profileImage": "{url}",
+            "profileCover": "",
+            "followers_count": 0,
+            "personalization_config": {
+                "background": "#ffffff",
+                "accent": "#000000"
+            },
+            "verifed": true
+        },
+        "reposted_to": [],
+        "answered_to": [],
+        "content": "&lt;h1&gt;Hello, world&lt;/h1&gt;",
+        "tags": [
+            "hello",
+            "world",
+            "helloworld"
+        ],
+        "liked": 0,
+        "uploaded": "2025-01-16 00:00:00",
+        "post_settings": {
+            "all_repost": true,
+            "all_comment": true
+        },
+        "who_liked": [],
+        "user_liked": false
+    }
+]</pre>
+<hr>
+            </div>
             <div id="get_all_posts-func">
                 <h3>
                     get_all_posts
@@ -271,34 +295,6 @@
                 <p>
                     Возвращает список всех постов.
                 </p>
-                <pre class="prettyprint">
-[
-    {
-        post_real_id: 1,
-        post_id: "EGu74wjD1PDH",
-        user: {
-            id: 1,
-            nickname: "admin",
-            name: "Administrator",
-            biography: "",
-            profileImage: "{url}",
-            profileCover: ""
-        },
-        content: "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
-        tags: [
-            "hello",
-            "world",
-            "helloworld"
-        ],
-        liked: 0,
-        uploaded: "2024-11-24 00:00:00",
-        post_settings: {
-            all_repost: true,
-            all_comment: true
-        },
-        user_liked: false
-    }
-]</pre>
             </div>
             <div id="get_posts_by_user-func">
                 <h3>
@@ -310,34 +306,6 @@
                 <p>
                     Возвращает список всех постов от определённого пользователя.
                 </p>
-                <pre class="prettyprint">
-[
-    {
-        post_real_id: 1,
-        post_id: "EGu74wjD1PDH",
-        user: {
-            id: 1,
-            nickname: "admin",
-            name: "Administrator",
-            biography: "",
-            profileImage: "{url}",
-            profileCover: ""
-        },
-        content: "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
-        tags: [
-            "hello",
-            "world",
-            "helloworld"
-        ],
-        liked: 0,
-        uploaded: "2024-11-24 00:00:00",
-        post_settings: {
-            all_repost: true,
-            all_comment: true
-        },
-        user_liked: false
-    }
-]</pre>
             </div>
             <div id="get_posts_by_user_tags-func">
                 <h3>
@@ -349,34 +317,38 @@
                 <p>
                     Возвращает список всех постов, имеющие теги на которых он подписан.
                 </p>
-                <pre class="prettyprint">
-[
-    {
-        post_real_id: 1,
-        post_id: "EGu74wjD1PDH",
-        user: {
-            id: 1,
-            nickname: "admin",
-            name: "Administrator",
-            biography: "",
-            profileImage: "{url}",
-            profileCover: ""
-        },
-        content: "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
-        tags: [
-            "hello",
-            "world",
-            "helloworld"
-        ],
-        liked: 0,
-        uploaded: "2024-11-24 00:00:00",
-        post_settings: {
-            all_repost: true,
-            all_comment: true
-        },
-        user_liked: false
-    }
-]</pre>
+            </div>
+            <div id="get_posts_by_followings-func">
+                <h3>
+                    get_posts_by_followings
+                </h3>
+                <p>
+                    Параметры: <code>session</code>, <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
+                </p>
+                <p>
+                    Возвращает список всех постов с подписок.
+                </p>
+            </div>
+            <div id="get_liked_posts-func">
+                <h3>
+                    get_liked_posts
+                </h3>
+                <div class="alert">
+                    <div>
+                        <svg data-slot="icon" aria-hidden="true" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        Если у заданного пользователя скрыты посты которые ему понравились, но заданная сессия пользователя совпадает с заданным пользователем, все равно список постов вернётся
+                    </div>
+                </div>
+                <p>
+                    Параметры: <code>session</code>, <code>nickname</code>, <code>last_id</code> (последний айди поста, к примеру это нужно для бесконечной прокрутки)
+                </p>
+                <p>
+                    Возвращает список постов которые понравились пользователю.
+                </p>
             </div>
             <div id="get_post-func">
                 <h3>
@@ -388,33 +360,6 @@
                 <p>
                     Возвращает данные поста используя айди поста.
                 </p>
-                <pre class="prettyprint">
-{
-    post_real_id: 1,
-    post_id: "EGu74wjD1PDH",
-    user: {
-        id: 1,
-        nickname: "admin",
-        name: "Administrator",
-        biography: "",
-        profileImage: "{url}",
-        profileCover: ""
-    },
-    content: "&lt;h1&gt;Hello, world!&lt;/h1&gt;",
-    tags: [
-        "hello",
-        "world",
-        "helloworld"
-    ],
-    liked: 0,
-    uploaded: "2024-11-24 00:00:00",
-    post_settings: {
-        all_repost: true,
-        all_comment: true
-    },
-    user_liked: false
-}
-</pre>
             </div>
             <div id="get_comments-func">
                 <h3>
@@ -431,12 +376,18 @@
     {
         "id": 284,
         "user": {
-            id: 1,
-            nickname: "admin",
-            name: "Administrator",
-            biography: "",
-            profileImage: "{url}",
-            profileCover: ""
+            "id": 1,
+            "nickname": "admin",
+            "name": "Administrator",
+            "biography": "",
+            "profileImage": "{url}",
+            "profileCover": "",
+            "followers_count": 0,
+            "personalization_config": {
+                "background": "#ffffff",
+                "accent": "#000000"
+            },
+            "verifed": true
         },
         "comment": "Hello, world!",
         "post_id": "EGu74wjD1PDH",
@@ -465,6 +416,284 @@
                 <p>
                     Возвращает <code>true</code> если пост существует.
                 </p>
+                <pre class="prettyprint">
+{
+    "result": true
+}</pre>
+            </div>
+            <div id="add_followed_tags-func">
+                <h3>
+                    add_followed_tags
+                </h3>
+                <p>
+                    Параметры: <code>strong</code>, <code>tags</code>
+                </p>
+                <p>
+                    <strong>Изменяет</strong> список тегов на которые подписан пользователь.
+                </p>
+                <pre class="prettyprint">
+{
+    "result": true
+}</pre>
+            </div>
+            <div id="get_followed_tags-func">
+                <h3>
+                    get_followed_tags
+                </h3>
+                <p>
+                    Параметры: <code>session</code>
+                </p>
+                <p>
+                    Возвращает список тегов на которые подписан пользователь.
+                </p>
+                <pre class="prettyprint">
+[
+    "photo",
+    "photography"
+]</pre>
+            </div>
+            <div id="like-func">
+                <h3>
+                    like
+                </h3>
+                <p>
+                    Параметры: <code>strong</code>, <code>post_id</code>
+                </p>
+                <p>
+                    Ставит/убирает отметку нравится на пост.
+                </p>
+                <pre class="prettyprint">
+{
+    "liked": true
+}</pre>
+            <div id="get_who_liked-func">
+                <h3>
+                    get_who_liked
+                </h3>
+                <p>
+                    Параметры: <code>post_id</code>
+                </p>
+                <p>
+                    Возвращает список пользователей которым понравился пост.
+                </p>
+                <pre class="prettyprint">
+[
+    {
+        "id": 1,
+        "nickname": "admin",
+        "name": "Administrator",
+        "biography": "",
+        "profileImage": "{url}",
+        "profileCover": "",
+        "followers_count": 0,
+        "personalization_config": {
+            "background": "#ffffff",
+            "accent": "#000000"
+        },
+        "verifed": true,
+        "token": "{token}"
+    }
+]</pre>
+            </div>
+        </div>
+        <div id="questions-obj">
+            <h2>
+                Questions
+            </h2>
+            <div id="check_question_existence-func">
+                <h3>
+                    check_question_existence
+                </h3>
+                <p>
+                    Параметры: <code>id</code>
+                </p>
+                <p>
+                    Возвращает <code>true</code> если вопрос существует.
+                </p>
+                <pre class="prettyprint">
+{
+    "result": true
+}</pre>
+            </div>
+            <div id="get_question-func">
+                <h3>
+                    get_question
+                </h3>
+                <p>
+                    Параметры: <code>id</code>
+                </p>
+                <p>
+                    Возвращает данные вопроса.
+                </p>
+                <pre class="prettyprint">
+{
+    "result": true
+}</pre>
+            </div>
+            <div id="allowed_to_ask-func">
+                <h3>
+                    allowed_to_ask
+                </h3>
+                <p>
+                    Параметры: <code>nickname</code>
+                </p>
+                <p>
+                    Возвращает <code>true</code> если пользователь разрешил задавать ему вопросы.
+                </p>
+                <pre class="prettyprint">
+{
+    "result": true
+}</pre>
+            </div>
+            <div id="ask_question-func">
+                <h3>
+                    ask_question
+                </h3>
+                <p>
+                    Параметры: <code><strong>session</strong></code>, <code><strong>question</strong></code>, <code><strong>nickname</strong></code>, <code>anonymous (0 = нет, 1 = да)</code>
+                </p>
+                <p>
+                    Задать вопрос пользователю.
+                </p>
+            </div>
+        </div>
+        <div id="follow-obj">
+            <h2>
+                Follow
+            </h2>
+            <div id="check_follow-func">
+                <h3>
+                    check_follow
+                </h3>
+                <p>
+                    Параметры: <code>session</code>, <code>nickname</code>
+                </p>
+                <p>
+                    Возвращает <code>true</code> если пользователь подписан на заданного пользователя.
+                </p>
+                <pre class="prettyprint">
+{
+    "result": true
+}</pre>
+            </div>
+            <div id="follow-func">
+                <h3>
+                    follow
+                </h3>
+                <p>
+                    Параметры: <code>session</code>, <code>nickname</code>
+                </p>
+                <p>
+                    Подписаться/отписаться на пользователя.
+                </p>
+                <pre class="prettyprint">
+{
+    "followed": true
+}</pre>
+            </div>
+        </div>
+        <div id="notifications-obj">
+            <h2>
+                Notifications
+            </h2>
+            <div id="get_notifications-func">
+                <h3>
+                    get_notifications
+                </h3>
+                <p>
+                    Параметры: <code>session</code>
+                </p>
+                <p>
+                    Получает список всех уведомлений.
+                </p>
+                <pre class="prettyprint">
+[
+    {
+        "notification_type": "new_repost",
+        "notification_author": {
+            "id": 1,
+            "nickname": "admin",
+            "name": "Administrator",
+            "biography": "",
+            "profileImage": "{url}",
+            "profileCover": "",
+            "followers_count": 0,
+            "personalization_config": {
+                "background": "#ffffff",
+                "accent": "#000000"
+            },
+            "verifed": true
+        },
+        "notification_linked": "/zhab/{id}",
+        "notifciation_appeared": "2025-01-15T13:31:35-05:00"
+    }
+]</pre>
+            </div>
+            <div id="get_unread_notifications_count-func">
+                <h3>
+                    get_unread_notifications_count
+                </h3>
+                <p>
+                    Параметры: <code>session</code>
+                </p>
+                <p>
+                    Получить количество непрочитанных уведомлений.
+                </p>
+                <pre class="prettyprint">
+{
+    "result": 2
+}</pre>
+            </div>
+        </div>
+        <div id="inbox-obj">
+            <h2>
+                Inbox
+            </h2>
+            <div id="get_messages-func">
+                <h3>
+                    get_messages
+                </h3>
+                <p>
+                    Параметры: <code>session</code>
+                </p>
+                <p>
+                    Получает список всех сообщений с входящих.
+                </p>
+                <pre class="prettyprint">
+[
+    {
+        "message_by": {
+            "nickname": "anonymous",
+            "profileImage": "{url}",
+            "verifed": false
+        },
+        "message": "question_asked",
+        "question": {
+            "id": "{question_id}",
+            "user": {
+                "nickname": "anonymous",
+                "profileImage": "{url}"
+            },
+            "question": "Когда обновление API?",
+            "question_answered": false
+        }
+    }
+]</pre>
+            </div>
+            <div id="get_unread_count_msgs-func">
+                <h3>
+                    get_unread_count_msgs
+                </h3>
+                <p>
+                    Параметры: <code>session</code>
+                </p>
+                <p>
+                    Получить количество непрочитанных сообщений с входящих.
+                </p>
+                <pre class="prettyprint">
+{
+    "result": 2
+}</pre>
             </div>
         </div>
     </main>

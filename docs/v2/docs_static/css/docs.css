@@ -83,7 +83,7 @@ a:hover{
     height: 52px;
     border-bottom: 1px solid rgba(255, 255, 255, .1);
     z-index: 2047;
-    transition: top .2s;
+    transition: top .2s linear;
 }
 .nav_options_searchbar input, .input_search {
     width: fill-available;
